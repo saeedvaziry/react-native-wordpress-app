@@ -1,0 +1,33 @@
+{
+  "name": "wpapp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "android": "cd ./android && ./gradlew app:assembleDebug && ./gradlew installDebug",
+    "test": "jest"
+  },
+  "dependencies": {
+    "native-base": "^2.12.1",
+    "react": "16.8.3",
+    "react-native": "0.59.4",
+    "react-native-htmlview": "^0.13.0",
+    "react-native-material-ripple": "^0.8.0",
+    "react-native-navigation": "^2.17.0",
+    "react-native-vector-icons": "^6.4.2",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/runtime": "^7.4.3",
+    "babel-jest": "^24.7.1",
+    "jest": "^24.7.1",
+    "metro-react-native-babel-preset": "^0.53.1",
+    "react-test-renderer": "16.8.3"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
