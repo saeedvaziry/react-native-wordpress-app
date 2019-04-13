@@ -14,6 +14,27 @@ class PostComponent extends Component {
   }
 
   showPost() {
+    // Navigation.showModal({
+    //   stack: {
+    //     children: [{
+    //       component: {
+    //         name: POST_SCREEN,
+    //         passProps: {
+    //           post: this.props.item
+    //         },
+    //         options: {
+    //           topBar: {
+    //             visible: false,
+    //             drawBehind: true
+    //             // title: {
+    //             //   text: this.props.item.title.rendered
+    //             // }
+    //           }
+    //         }
+    //       }
+    //     }]
+    //   }
+    // });
     Navigation.push(this.props.componentId, {
       component: {
         name: POST_SCREEN,

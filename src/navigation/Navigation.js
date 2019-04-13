@@ -12,26 +12,67 @@ import registerScreens from './registerScreens';
 registerScreens();
 
 export function appNavigation() {
+  // Navigation.setDefaultOptions({
+  //   topBar: {
+  //     visible: true,
+  //     drawBehind: false
+  //   },
+  //   bottomTabs: {
+  //     titleDisplayMode: 'alwaysShow',
+  //     selectedIconColor: '#000',
+  //     selectedTextColor: '#000',
+  //   },
+  //   bottomTab: {
+  //     selectedIconColor: '#000',
+  //     selectedTextColor: '#000',
+  //   },
+  //   animations: {
+  //     push: {
+  //       enable: false
+  //     },
+  //     pop: {
+  //       enable: false
+  //     }
+  //   }
+  // });
   Navigation.setDefaultOptions({
-    topBar: {
-      visible: true,
-      drawBehind: false
-    },
-    bottomTabs: {
-      titleDisplayMode: 'alwaysShow',
-      selectedIconColor: '#000',
-      selectedTextColor: '#000',
+    layout: {
+      componentBackgroundColor: '#e8e8e8',
+      orientation: ['portrait']
     },
     bottomTab: {
-      selectedIconColor: '#000',
-      selectedTextColor: '#000',
+      iconColor: '#1B4C77',
+      selectedIconColor: '#0f0',
+      textColor: '#1B4C77',
+      selectedTextColor: '#0f0',
+      fontFamily: 'HelveticaNeue-Italic',
+      fontSize: 13
+    },
+    _animations: {
+      push: {
+        waitForRender: false,
+      }
     },
     animations: {
       push: {
-        enable: false
+        enabled: true,
+        content: {
+          x: {
+            from: 1000,
+            to: 0,
+            duration: 250
+          }
+        }
       },
       pop: {
-        enable: false
+        enabled: true,
+        content: {
+          x: {
+            from: 0,
+            to: 1000,
+            duration: 250
+          }
+        }
       }
     }
   });
