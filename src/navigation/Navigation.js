@@ -25,6 +25,14 @@ export function appNavigation() {
     bottomTab: {
       selectedIconColor: '#000',
       selectedTextColor: '#000',
+    },
+    animations: {
+      push: {
+        enable: false
+      },
+      pop: {
+        enable: false
+      }
     }
   });
   Navigation.setRoot({

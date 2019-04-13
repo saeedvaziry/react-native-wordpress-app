@@ -1,10 +1,8 @@
-import { createStore, combineReducers } from 'redux';
-import AppReducer from '../reducers/AppReducer';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
-const rootReducer = combineReducers({
-  app: AppReducer
-});
+import { AppReducer } from '../reducers';
 
 export function configureStore() {
-  return createStore(rootReducer);
+  return createStore(AppReducer, applyMiddleware(thunk))
 }

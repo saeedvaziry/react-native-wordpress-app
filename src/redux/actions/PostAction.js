@@ -1,12 +1,10 @@
-import { NavigationActions } from 'react-navigation'
-
-import CONFIGS from '../config/app'
+import { AppConfigs } from '../../configs';
 
 import {
   POSTS,
   POSTS_SUCCESS,
   POSTS_FAILURE,
-} from '../reducers/PostReducer'
+} from '../reducers'
 
 function posts() {
   return {
@@ -14,10 +12,22 @@ function posts() {
   }
 }
 
-function postsSuccess(posts, category) {
+function postsSuccess(oldPosts, data, category) {
+  let posts = [];
+  for (let i = 0; i < data.length; i++) {
+    let image = null;
+    if (data[i]._embedded['wp:featuredmedia'] && data[i]._embedded['wp:featuredmedia'][0] && data[i]._embedded['wp:featuredmedia'][0].media_details && data[i]._embedded['wp:featuredmedia'][0].media_details.sizes && data[i]._embedded['wp:featuredmedia'][0].media_details.sizes.medium) {
+      image = data[i]._embedded['wp:featuredmedia'][0].media_details.sizes.medium.source_url;
+    }
+    posts.push({
+      title: data[i].title,
+      image: image
+    });
+  }
+
   return {
     type: POSTS_SUCCESS,
-    posts: posts,
+    posts: oldPosts.concat(posts),
     category: category
   }
 }
@@ -30,9 +40,9 @@ function postsFailure(error) {
 }
 
 export function fetchPosts(page = 1, category, oldPosts = []) {
-  let url = CONFIGS.BASE_URL + '/wp-json/wp/v2/posts?_embed&page=' + page
+  let url = AppConfigs.BASE_URL + '/wp-json/wp/v2/posts?_embed&page=' + page
   if (category) {
-    url = CONFIGS.BASE_URL + '/wp-json/wp/v2/posts?_embed&categories=' + category.id + '&page=' + page
+    url = AppConfigs.BASE_URL + '/wp-json/wp/v2/posts?_embed&categories=' + category.id + '&page=' + page
   }
   return (dispatch) => {
     dispatch(posts())
@@ -45,7 +55,7 @@ export function fetchPosts(page = 1, category, oldPosts = []) {
     }).then((response) => {
       if (response.status == 200) {
         response.json().then((data) => {
-          dispatch(postsSuccess(oldPosts.concat(data), category))
+          dispatch(postsSuccess(oldPosts, data, category))
         })
       } else {
         response.json().then((data) => {

@@ -1,10 +1,10 @@
-import CONFIGS from '../config/app'
+import { AppConfigs } from '../../configs';
 
 import {
   CATEGORIES,
   CATEGORIES_SUCCESS,
   CATEGORIES_FAILURE,
-} from '../reducers/CategoryReducer'
+} from '../reducers'
 
 function categories() {
   return {
@@ -29,7 +29,7 @@ function categoriesFailure(error) {
 export function fetchCategories() {
   return (dispatch) => {
     dispatch(categories())
-    fetch(CONFIGS.BASE_URL + '/wp-json/wp/v2/categories?_embed', {
+    fetch(AppConfigs.BASE_URL + '/wp-json/wp/v2/categories?_embed', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
