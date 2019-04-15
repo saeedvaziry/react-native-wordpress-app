@@ -28,14 +28,16 @@ function postsSuccess(oldPosts, data, category) {
   return {
     type: POSTS_SUCCESS,
     posts: oldPosts.concat(posts),
-    category: category
+    category: category,
+    hasPost: data.length > 0 ? true : false
   }
 }
 
 function postsFailure(error) {
   return {
     type: POSTS_FAILURE,
-    error: error
+    error: error,
+    hasPost: false
   }
 }
 

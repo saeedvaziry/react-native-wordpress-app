@@ -6,7 +6,8 @@ const initialState = {
   posts: [],
   fetching: false,
   error: null,
-  category: null
+  category: null,
+  hasPost: true
 }
 
 export default (state = initialState, action) => {
@@ -22,12 +23,14 @@ export default (state = initialState, action) => {
         posts: action.posts,
         category: action.category,
         fetching: false,
+        hasPost: action.hasPost,
       }
     case POSTS_FAILURE:
       return {
         ...state,
         fetching: false,
-        error: action.error
+        error: action.error,
+        hasPost: action.hasPost,
       }
     default:
       return state

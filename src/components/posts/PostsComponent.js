@@ -15,7 +15,7 @@ class PostsComponent extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatchFetchPosts(this.state.page, null, [])
+    this.props.dispatchFetchPosts(this.state.page, this.props.cat ? this.props.cat : null, [])
   }
 
   onRefresh() {
@@ -28,11 +28,13 @@ class PostsComponent extends Component {
   }
 
   nextPage(page) {
-    this.setState({ page: page })
-    if (this.props.post.category) {
-      this.props.dispatchFetchPosts(page, this.props.post.category, this.props.post.posts)
-    } else {
-      this.props.dispatchFetchPosts(page, null, this.props.post.posts)
+    if (this.props.post.hasPost) {
+      this.setState({ page: page })
+      if (this.props.post.category) {
+        this.props.dispatchFetchPosts(page, this.props.post.category, this.props.post.posts)
+      } else {
+        this.props.dispatchFetchPosts(page, null, this.props.post.posts)
+      }
     }
   }
 

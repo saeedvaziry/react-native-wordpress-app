@@ -8,6 +8,12 @@ class HomeScreen extends Component {
     super(props)
   }
 
+  static navigationOptions = {
+    topBar: {
+      visible: false
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>

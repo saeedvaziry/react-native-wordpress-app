@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import { connect } from 'react-redux';
+import { View, StyleSheet } from 'react-native';
+import { List } from 'native-base';
+
+import { CategoriesComponent } from '../../components';
 
 class CategoriesScreen extends Component {
   constructor(props) {
@@ -9,16 +11,19 @@ class CategoriesScreen extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
+        <List>
+          <CategoriesComponent {...this.props} />
+        </List>
       </View>
     )
   }
 }
 
-const mapDispatchToProps = {
-}
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
+});
 
-const mapStateToProps = state => ({
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(CategoriesScreen);
+export default CategoriesScreen;

@@ -1,6 +1,6 @@
-export const CATEGORIES = 'CATEGORIES'
-export const CATEGORIES_SUCCESS = 'CATEGORIES_SUCCESS'
-export const CATEGORIES_FAILURE = 'CATEGORIES_FAILURE'
+export const CATEGORIES = 'CATEGORIES';
+export const CATEGORIES_SUCCESS = 'CATEGORIES_SUCCESS';
+export const CATEGORIES_FAILURE = 'CATEGORIES_FAILURE';
 
 const initialState = {
   categories: [],

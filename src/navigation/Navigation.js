@@ -1,10 +1,9 @@
 import { Navigation } from 'react-native-navigation';
-
+import { Colors } from '../configs';
 import {
   HOME_SCREEN,
   CATEGORIES_SCREEN,
-  BOOKMARKS_SCREEN,
-  POST_SCREEN,
+  BOOKMARKS_SCREEN
 } from './Screens';
 import registerScreens from './registerScreens';
 
@@ -12,67 +11,37 @@ import registerScreens from './registerScreens';
 registerScreens();
 
 export function appNavigation() {
-  // Navigation.setDefaultOptions({
-  //   topBar: {
-  //     visible: true,
-  //     drawBehind: false
-  //   },
-  //   bottomTabs: {
-  //     titleDisplayMode: 'alwaysShow',
-  //     selectedIconColor: '#000',
-  //     selectedTextColor: '#000',
-  //   },
-  //   bottomTab: {
-  //     selectedIconColor: '#000',
-  //     selectedTextColor: '#000',
-  //   },
-  //   animations: {
-  //     push: {
-  //       enable: false
-  //     },
-  //     pop: {
-  //       enable: false
-  //     }
-  //   }
-  // });
   Navigation.setDefaultOptions({
+    topBar: {
+      title: {
+        color: Colors.WHITE
+      },
+      background: {
+        color: Colors.BLUE
+      },
+      leftButtonColor: Colors.WHITE
+    },
     layout: {
       componentBackgroundColor: '#e8e8e8',
-      orientation: ['portrait']
     },
     bottomTab: {
-      iconColor: '#1B4C77',
-      selectedIconColor: '#0f0',
-      textColor: '#1B4C77',
-      selectedTextColor: '#0f0',
-      fontFamily: 'HelveticaNeue-Italic',
-      fontSize: 13
-    },
-    _animations: {
-      push: {
-        waitForRender: false,
-      }
+      titleDisplayMode: 'alwaysShow',
+      selectedIconColor: '#000',
+      selectedTextColor: '#000',
     },
     animations: {
       push: {
-        enabled: true,
-        content: {
-          x: {
-            from: 1000,
-            to: 0,
-            duration: 250
-          }
-        }
+        waitForRender: true,
+        enabled: false,
       },
       pop: {
-        enabled: true,
-        content: {
-          x: {
-            from: 0,
-            to: 1000,
-            duration: 250
-          }
-        }
+        enabled: false,
+      },
+      showModal: {
+        enabled: false
+      },
+      dismissModal: {
+        enabled: false
       }
     }
   });
@@ -87,8 +56,8 @@ export function appNavigation() {
                 options: {
                   topBar: {
                     title: {
-                      text: 'Home'
-                    },
+                      text: 'Latest Posts'
+                    }
                   }
                 }
               }
@@ -102,23 +71,23 @@ export function appNavigation() {
           }
         },
         {
-          component: {
-            name: CATEGORIES_SCREEN,
+          stack: {
+            children: [{
+              component: {
+                name: CATEGORIES_SCREEN,
+                options: {
+                  topBar: {
+                    title: {
+                      text: 'Categories'
+                    }
+                  }
+                }
+              }
+            }],
             options: {
               bottomTab: {
                 text: 'Categories',
                 icon: require('../assets/icons/list.png')
-              }
-            }
-          }
-        },
-        {
-          component: {
-            name: BOOKMARKS_SCREEN,
-            options: {
-              bottomTab: {
-                text: 'Bookmarks',
-                icon: require('../assets/icons/bookmark.png')
               }
             }
           }
